@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ground
+  - healthBar
   layers:
   - Default
   - TransparentFX
@@ -11,7 +13,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - ground
   - 
   - 
   - 
@@ -40,4 +42,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: line1
+    uniqueID: 2233985177
+    locked: 0
+  - name: line2
+    uniqueID: 386312857
+    locked: 0
+  - name: line3
+    uniqueID: 948254989
+    locked: 0
+  - name: line4
+    uniqueID: 2075756099
+    locked: 0
+  - name: others
+    uniqueID: 1488938409
+    locked: 0
+  - name: glimpses
+    uniqueID: 2627144143
     locked: 0
