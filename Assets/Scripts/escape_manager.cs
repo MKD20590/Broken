@@ -154,14 +154,14 @@ public class escape_manager : MonoBehaviour
     }
     void lose()
     {
-            FindObjectOfType<loading_screen>().startLoad("gameplay");
+        FindObjectOfType<loading_screen>().startLoad("gameplay");
     }
     void ending()
     {
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("warned", 10);
+/*        PlayerPrefs.SetInt("warned", 10);
         PlayerPrefs.SetInt("health", 5);
-        PlayerPrefs.SetInt("sanity", 0);
+        PlayerPrefs.SetInt("sanity", 0);*/
         FindObjectOfType<loading_screen>().startLoad("main_menu");
     }
     void shake(int value)

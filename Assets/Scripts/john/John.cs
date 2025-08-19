@@ -41,7 +41,7 @@ public class John : MonoBehaviour
         }
         gm = FindObjectOfType<john_gm>();
         anim = GetComponent<Animator>();
-        Invoke("spawnWord",1f);
+        Invoke("spawnWord", 3f);
     }
 
     // Update is called once per frame

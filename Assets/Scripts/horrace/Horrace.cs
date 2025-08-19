@@ -174,7 +174,7 @@ public class Horrace : MonoBehaviour
     }
     public IEnumerator spawnWord()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
         wordIdx = wordIndexes[Random.Range(0, wordIndexes.Count)];
         wordIndexes.Remove(wordIdx);
 

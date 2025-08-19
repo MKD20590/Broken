@@ -60,7 +60,7 @@ public class john_gm : MonoBehaviour
             main_bgm.volume = Mathf.MoveTowards(main_bgm.volume, 0, Time.deltaTime * 1f);
             if (main_bgm.volume <= 0.001f)
             {
-                happy_bgm.volume = Mathf.MoveTowards(happy_bgm.volume, 1, Time.deltaTime * 1f);
+                happy_bgm.volume = Mathf.MoveTowards(happy_bgm.volume, 0.7f, Time.deltaTime * 1f);
             }
             if(!happy_voice.isPlaying && happy_bgm.volume >= 0.99f)
             {

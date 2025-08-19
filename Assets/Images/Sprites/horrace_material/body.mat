@@ -54,13 +54,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _alpha_value: 0.42422915
+    - _alpha_value: 1
     - _changeNoise: 0
     - _changeTime: 0
     - _glitch2_value: 0
-    - _glitch_value: 8
-    - _multiply: 5
-    - _noise_scale: 135
+    - _glitch_value: 0
+    - _multiply: 0
+    - _noise_scale: 0
     - _sine: 0
     - _subtract: 0.4
     - _time_multiply: 1

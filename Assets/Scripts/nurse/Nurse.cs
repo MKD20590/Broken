@@ -24,7 +24,7 @@ public class Nurse : MonoBehaviour
         anim = GetComponent<Animator>();
         gm = FindObjectOfType<nurse_gm>();
         syringe = FindObjectOfType<nurse_syringe>();
-        Invoke("attack", 1f);
+        Invoke("attack", 3f);
     }
 
     // Update is called once per frame
