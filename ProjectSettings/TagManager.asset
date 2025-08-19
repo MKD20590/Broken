@@ -6,6 +6,10 @@ TagManager:
   tags:
   - ground
   - healthBar
+  - clicker
+  - Nurse
+  - clicker2
+  - obstacle
   layers:
   - Default
   - TransparentFX

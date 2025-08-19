@@ -11,6 +11,7 @@ public class Heart : MonoBehaviour
     [SerializeField] private List<bool> collected;
     [SerializeField] private List<Material> heartMat;
     [SerializeField] private Animator inventoryPanel;
+    [SerializeField] private Animator heartUI;
     [SerializeField] private bool isManager = false;
     [SerializeField] private Heart manager;
     [SerializeField] private int index;
@@ -18,18 +19,21 @@ public class Heart : MonoBehaviour
     Animator anim;
     Player player;
     bool isOpen = false;
-    bool isFull = false;
+    [SerializeField] private bool isFull = false;
     public static bool isCompleted = false;
     public bool canOpenPanel = true;
     [SerializeField] private bool lastPiece = false;
     [SerializeField] private bool thirdPiece = false;
+    Color fullColor;
     // Start is called before the first frame update
     void Start()
     {
+        isCompleted = false;
         anim = GetComponent<Animator>();
         player = FindObjectOfType<Player>();
         if (isManager)
         {
+            fullColor = heartMat[0].GetColor("_Color") * 2f;
             for (int i = 0; i < player.bosses_cleared.Count; i++)
             {
                 if (player.bosses_cleared[i])
@@ -66,6 +70,10 @@ public class Heart : MonoBehaviour
                 }
             }
             if (!manager.collected[3])
+            {
+                canSpawn = false;
+            }
+            else if (manager.collected[4])
             {
                 canSpawn = false;
             }
@@ -117,9 +125,10 @@ public class Heart : MonoBehaviour
             }
             if(isFull && isCompleted)
             {
-                heartMat[0].SetColor("_Color", Color.Lerp(heartMat[0].GetColor("_Color"), heartMat[0].GetColor("_Color") * 3f, Time.deltaTime * 3f));
+                //heartMat[0].SetColor("_Color", Color.Lerp(heartMat[0].GetColor("_Color"), fullColor, Time.deltaTime * 3f));
                 //heartMat[1].SetColor("_Color", Color.Lerp(heartMat[1].GetColor("_Color"), heartMat[1].GetColor("_Color") * 2f, Time.deltaTime * 3f));
-                anim.SetBool("full", true);
+                //anim.SetBool("full", true);
+                heartUI.SetBool("full", true);
             }
         }
         else
@@ -127,6 +136,7 @@ public class Heart : MonoBehaviour
             anim.SetBool("in", isColliding);
             if (isColliding && Input.GetKeyDown(KeyCode.E))
             {
+                GameObject.Find("heart_piece").GetComponent<AudioSource>().Play();
                 manager.getPiece(index, true);
                 GetComponent<BoxCollider2D>().enabled = false;
                 transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
@@ -183,6 +193,7 @@ public class Heart : MonoBehaviour
                     return;
                 }
             }
+            GameObject.Find("fusing_heart").GetComponent<AudioSource>().Play();
             isCompleted = true;
             canOpenPanel = true;
             openInventory();
@@ -209,6 +220,10 @@ public class Heart : MonoBehaviour
         {
             isColliding = false;
         }
+    }
+    public void escaping()
+    {
+        FindObjectOfType<loading_screen>().startLoad("escape");
     }
     public void hover()
     {

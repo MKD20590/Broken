@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: leg
-  m_Shader: {fileID: -6465566751694194690, guid: 7e755414eaa4393478605b76f5b0ebc5, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: ad979a1fd962eb042b968dd8d6039008, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -54,13 +54,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _alpha_value: 1
+    - _alpha_value: 0.091404855
     - _changeNoise: 0
     - _changeTime: 0
     - _glitch2_value: 0
-    - _glitch_value: 0
-    - _multiply: 0
-    - _noise_scale: 0
+    - _glitch_value: 12
+    - _multiply: 7
+    - _noise_scale: 155
     - _sine: 0
     - _subtract: 0.4
     - _time_multiply: 1

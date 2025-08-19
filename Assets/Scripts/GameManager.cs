@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -30,14 +31,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int minTime_glimpses;
     [SerializeField] private int maxTime_glimpses;
 
+    static bool isHinting = true;
+
     int random_glimpse = 0;
     float time_glimpse = 0;
     bool pause = false;
-    bool canHint = true;
-    bool canHintClick = true;
+    [SerializeField] private bool canHint = true;
+    [SerializeField] private bool canHintClick = true;
     // Start is called before the first frame update
     void Awake()
     {
+        hintPanel.SetBool("in", isHinting);
+        acak = hintText.text.ToCharArray().ToList();
         Time.timeScale = 1;
         random_glimpse = Random.Range(minTime_glimpses, maxTime_glimpses);
         player = FindObjectOfType<Player>();
@@ -86,8 +91,8 @@ public class GameManager : MonoBehaviour
         //glimpses
         if (time_glimpse >= random_glimpse)
         {
-            glimpses.GetComponent<SpriteRenderer>().material.SetFloat("_alpha", Mathf.MoveTowards(glimpses.GetComponent<SpriteRenderer>().material.GetFloat("_alpha"), .95f, Time.deltaTime * 10f));
-            if (glimpses.GetComponent<SpriteRenderer>().material.GetFloat("_alpha") >= .95f)
+            glimpses.GetComponent<Image>().material.SetFloat("_alpha", Mathf.MoveTowards(glimpses.GetComponent<Image>().material.GetFloat("_alpha"), .95f, Time.deltaTime * 10f));
+            if (glimpses.GetComponent<Image>().material.GetFloat("_alpha") >= .95f)
             {
                 random_glimpse = Random.Range(minTime_glimpses, maxTime_glimpses);
                 time_glimpse = 0;
@@ -96,10 +101,10 @@ public class GameManager : MonoBehaviour
         else
         {
             time_glimpse += Time.deltaTime;
-            glimpses.GetComponent<SpriteRenderer>().material.SetFloat("_alpha", Mathf.MoveTowards(glimpses.GetComponent<SpriteRenderer>().material.GetFloat("_alpha"), 0, Time.deltaTime * 2f));
-            if (glimpses.GetComponent<SpriteRenderer>().material.GetFloat("_alpha") <= 0f)
+            glimpses.GetComponent<Image>().material.SetFloat("_alpha", Mathf.MoveTowards(glimpses.GetComponent<Image>().material.GetFloat("_alpha"), 0, Time.deltaTime * 2f));
+            if (glimpses.GetComponent<Image>().material.GetFloat("_alpha") <= 0f)
             {
-                glimpses.GetComponent<SpriteRenderer>().material = glimpses_mats[Random.Range(0,glimpses_mats.Count)];
+                glimpses.GetComponent<Image>().material = glimpses_mats[Random.Range(0,glimpses_mats.Count)];
 
             }
             //glimpses.GetComponent<CanvasGroup>().alpha = Mathf.MoveTowards(glimpses.GetComponent<CanvasGroup>().alpha,0,Time.deltaTime);
@@ -129,6 +134,14 @@ public class GameManager : MonoBehaviour
             paused();
         }
     }
+    public void resetGame()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("warned", 10);
+        PlayerPrefs.SetInt("health", 5);
+        PlayerPrefs.SetInt("sanity", 0);
+        FindObjectOfType<loading_screen>().startLoad("gameplay");
+    }
     public void backMenu()
     {
         FindObjectOfType<loading_screen>().startLoad("main_menu");
@@ -137,6 +150,8 @@ public class GameManager : MonoBehaviour
     {
         if (canHint)
         {
+            canHintClick = true;
+            isHinting = !isHinting;
             canHint = false;
             hintPanel.SetBool("in", !hintPanel.GetBool("in"));
         }

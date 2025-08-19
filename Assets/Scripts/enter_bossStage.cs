@@ -65,9 +65,12 @@ public class enter_bossStage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.isColliding = true;
-        isColliding = true;
-        canEnter = true;
+        if(collision.tag == "Player")
+        {
+            player.isColliding = true;
+            isColliding = true;
+            canEnter = true;
+        }
 /*        if (canEnter && Input.GetKeyDown(KeyCode.E))
         {
             canEnter = false;
@@ -75,8 +78,11 @@ public class enter_bossStage : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        player.isColliding = false;
-        isColliding = false;
+        if (collision.tag == "Player")
+        {
+            player.isColliding = false;
+            isColliding = false;
+        }
     }
 /*    public void addSanity()
     {

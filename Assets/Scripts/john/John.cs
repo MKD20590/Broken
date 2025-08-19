@@ -82,14 +82,14 @@ public class John : MonoBehaviour
         {
             foreach (SpriteRenderer sr in sprites)
             {
-                sr.color = Color.Lerp(sr.color, new Color(1,1,1,1), Time.deltaTime*5f);
+                sr.color = Color.Lerp(sr.color, new Color(1,1,1,1), Time.deltaTime * 3f);
             }
         }
         else
         {
             foreach (SpriteRenderer sr in sprites)
             {
-                sr.color = Color.Lerp(sr.color, new Color(1, 1, 1, 0), Time.deltaTime * 5f);
+                sr.color = Color.Lerp(sr.color, new Color(1, 1, 1, 0), Time.deltaTime * 1f);
             }
         }
     }
@@ -122,6 +122,7 @@ public class John : MonoBehaviour
     }
     public void getHit()
     {
+        GameObject.Find("Monster_hit").GetComponent<AudioSource>().Play();
         gm.shake(5);
         foreach (SpriteRenderer sr in sprites)
         {

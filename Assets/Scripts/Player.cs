@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private AudioSource steps;
+    [SerializeField] private AudioSource heartbeat;
+    [SerializeField] private GameObject gameoverScreen;
     [Header("front, back, left, right")]
     [SerializeField] private List<GameObject> sprites;
     public int health = 5;
@@ -41,13 +44,25 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        virtualCam.m_Lens.OrthographicSize = 3f;
         lastPosition = new Vector2(PlayerPrefs.GetFloat("player_lastPositionX", 0), PlayerPrefs.GetFloat("player_lastPositionY", 0));
         transform.position = lastPosition;
+        health = PlayerPrefs.GetInt("health", 5);
+        if(health <= 0)
+        {
+            GameObject.Find("bgm_main").GetComponent<AudioSource>().Stop();
+            gameoverScreen.SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("bgm_main").GetComponent<AudioSource>().Play();
+            gameoverScreen.SetActive(false);
+        }
         sanity = 0;
         for (int i = 0; i < 3; i++)
         {
             bosses_cleared[i] = PlayerPrefs.GetInt("boss_cleared"+i, 0) > 0;
-            sanity += 33;
+            if (bosses_cleared[i]) sanity += 33;
         }
 
         anim = GetComponent<Animator>();
@@ -57,245 +72,250 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //health = PlayerPrefs.GetInt("health", 3);
-        //sanity = PlayerPrefs.GetInt("sanity", 0);
-
-        lastPosition = transform.position;
-        PlayerPrefs.SetFloat("player_lastPositionX", lastPosition.x);
-        PlayerPrefs.SetFloat("player_lastPositionY", lastPosition.y);
-        fear_Text.SetBool("in", isColliding);
-
-        if (!bosses_cleared[0])
+        if(health > 0)
         {
-            float distance = Vector2.Distance(bosses_position[0].position, transform.position);
-            distanceValues[0] = distance;
-            float speed = 10f-distance;
-            if(speed <= 0.1f)
+
+            //health = PlayerPrefs.GetInt("health", 3);
+            //sanity = PlayerPrefs.GetInt("sanity", 0);
+
+            lastPosition = transform.position;
+            PlayerPrefs.SetFloat("player_lastPositionX", lastPosition.x);
+            PlayerPrefs.SetFloat("player_lastPositionY", lastPosition.y);
+            fear_Text.SetBool("in", isColliding);
+
+            if (!bosses_cleared[0])
             {
-                speed = 0.1f;
-            }
-            float shake = 7f - distance;
-            if(shake <= 0f)
-            {
-                shake = 0f;
-            }
-            shakeValues[0] = shake;
-
-
-            parAnim[0].SetFloat("speed", speed);
-            foreach (ParticleSystem par in particle1)
-            {
-                // Update posisi di tengah-tengah garis
-                par.transform.position = (bosses_position[0].position + transform.position) * 0.5f;
-
-                // Update rotasi mengarah ke player
-                Vector3 dir = (transform.position - bosses_position[0].position).normalized;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                par.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-                // Update par Length
-                ParticleSystem.ShapeModule shape = par.shape;
-                shape.scale = new Vector3(distance-1,0.5f,0);
-
-            }
-
-            int segmentCount = Mathf.Max(2, Mathf.RoundToInt(distance * segmentsPerUnit));
-            foreach (LineRenderer thread in threads1)
-            {
-                thread.positionCount = segmentCount;
-
-                for (int i = 0; i < segmentCount; i++)
+                float distance = Vector2.Distance(bosses_position[0].position, transform.position);
+                distanceValues[0] = distance;
+                float speed = 10f-distance;
+                if(speed <= 0.1f)
                 {
-                    float t = (float)i / (segmentCount - 1);
-                    Vector3 point = Vector3.Lerp(bosses_position[0].position, transform.position, t);
-                    thread.SetPosition(i, point);
+                    speed = 0.1f;
+                }
+                float shake = 5f - distance;
+                if(shake <= 0f)
+                {
+                    shake = 0f;
+                }
+                shakeValues[0] = shake;
+
+
+                parAnim[0].SetFloat("speed", speed);
+                foreach (ParticleSystem par in particle1)
+                {
+                    // Update posisi di tengah-tengah garis
+                    par.transform.position = (bosses_position[0].position + transform.position) * 0.5f;
+
+                    // Update rotasi mengarah ke player
+                    Vector3 dir = (transform.position - bosses_position[0].position).normalized;
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    par.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                    // Update par Length
+                    ParticleSystem.ShapeModule shape = par.shape;
+                    shape.scale = new Vector3(distance-1,0.5f,0);
+
+                }
+
+                int segmentCount = Mathf.Max(2, Mathf.RoundToInt(distance * segmentsPerUnit));
+                foreach (LineRenderer thread in threads1)
+                {
+                    thread.positionCount = segmentCount;
+
+                    for (int i = 0; i < segmentCount; i++)
+                    {
+                        float t = (float)i / (segmentCount - 1);
+                        Vector3 point = Vector3.Lerp(bosses_position[0].position, transform.position, t);
+                        thread.SetPosition(i, point);
+                    }
                 }
             }
-        }
-        else
-        {
-            boss_volumes[0].SetActive(false);
-            shakeValues[0] = 0;
-            distanceValues[0] = 100;
-            foreach (LineRenderer thread in threads1)
+            else
             {
-                thread.gameObject.SetActive(false);
-            }
-        }
-
-        if (!bosses_cleared[1])
-        {
-            float distance = Vector2.Distance(bosses_position[1].position, transform.position);
-            distanceValues[1] = distance;
-            float speed = 10f - distance;
-            if (speed <= 0.1f)
-            {
-                speed = 0.1f;
-            }
-            float shake = 7f - distance;
-            if (shake <= 0f)
-            {
-                shake = 0f;
-            }
-            shakeValues[1] = shake;
-
-
-            parAnim[1].SetFloat("speed", speed);
-            foreach (ParticleSystem par in particle2)
-            {
-                // Update posisi di tengah-tengah garis
-                par.transform.position = (bosses_position[1].position + transform.position) * 0.5f;
-
-                // Update rotasi mengarah ke player
-                Vector3 dir = (transform.position - bosses_position[1].position).normalized;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                par.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-                // Update par Length
-                ParticleSystem.ShapeModule shape = par.shape;
-                shape.scale = new Vector3(distance - 1, 0.5f, 0);
-
-            }
-
-            int segmentCount = Mathf.Max(2, Mathf.RoundToInt(distance * segmentsPerUnit));
-            foreach (LineRenderer thread in threads2)
-            {
-                thread.positionCount = segmentCount;
-
-                for (int i = 0; i < segmentCount; i++)
+                boss_volumes[0].SetActive(false);
+                shakeValues[0] = 0;
+                distanceValues[0] = 100;
+                foreach (LineRenderer thread in threads1)
                 {
-                    float t = (float)i / (segmentCount - 1);
-                    Vector3 point = Vector3.Lerp(bosses_position[1].position, transform.position, t);
-                    thread.SetPosition(i, point);
+                    thread.gameObject.SetActive(false);
                 }
             }
-        }
-        else
-        {
-            boss_volumes[1].SetActive(false);
-            shakeValues[1] = 0;
-            distanceValues[1] = 100;
-            foreach (LineRenderer thread in threads2)
+
+            if (!bosses_cleared[1])
             {
-                thread.gameObject.SetActive(false);
-            }
-        }
-
-        if (!bosses_cleared[2])
-        {
-            float distance = Vector2.Distance(bosses_position[2].position, transform.position);
-            distanceValues[2] = distance;
-            float speed = 10f - distance;
-            if (speed <= 0.1f)
-            {
-                speed = 0.1f;
-            }
-            float shake = 7f - distance;
-            if (shake <= 0f)
-            {
-                shake = 0f;
-            }
-            shakeValues[2] = shake;
-
-
-            parAnim[2].SetFloat("speed", speed);
-            foreach (ParticleSystem par in particle3)
-            {
-                // Update posisi di tengah-tengah garis
-                par.transform.position = (bosses_position[2].position + transform.position) * 0.5f;
-
-                // Update rotasi mengarah ke player
-                Vector3 dir = (transform.position - bosses_position[2].position).normalized;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                par.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-                // Update par Length
-                ParticleSystem.ShapeModule shape = par.shape;
-                shape.scale = new Vector3(distance - 1, 0.5f, 0);
-
-            }
-
-            int segmentCount = Mathf.Max(2, Mathf.RoundToInt(distance * segmentsPerUnit));
-            foreach (LineRenderer thread in threads3)
-            {
-                thread.positionCount = segmentCount;
-
-                for (int i = 0; i < segmentCount; i++)
+                float distance = Vector2.Distance(bosses_position[1].position, transform.position);
+                distanceValues[1] = distance;
+                float speed = 10f - distance;
+                if (speed <= 0.1f)
                 {
-                    float t = (float)i / (segmentCount - 1);
-                    Vector3 point = Vector3.Lerp(bosses_position[2].position, transform.position, t);
-                    thread.SetPosition(i, point);
+                    speed = 0.1f;
+                }
+                float shake = 5f - distance;
+                if (shake <= 0f)
+                {
+                    shake = 0f;
+                }
+                shakeValues[1] = shake;
+
+
+                parAnim[1].SetFloat("speed", speed);
+                foreach (ParticleSystem par in particle2)
+                {
+                    // Update posisi di tengah-tengah garis
+                    par.transform.position = (bosses_position[1].position + transform.position) * 0.5f;
+
+                    // Update rotasi mengarah ke player
+                    Vector3 dir = (transform.position - bosses_position[1].position).normalized;
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    par.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                    // Update par Length
+                    ParticleSystem.ShapeModule shape = par.shape;
+                    shape.scale = new Vector3(distance - 1, 0.5f, 0);
+
+                }
+
+                int segmentCount = Mathf.Max(2, Mathf.RoundToInt(distance * segmentsPerUnit));
+                foreach (LineRenderer thread in threads2)
+                {
+                    thread.positionCount = segmentCount;
+
+                    for (int i = 0; i < segmentCount; i++)
+                    {
+                        float t = (float)i / (segmentCount - 1);
+                        Vector3 point = Vector3.Lerp(bosses_position[1].position, transform.position, t);
+                        thread.SetPosition(i, point);
+                    }
                 }
             }
-        }
-        else
-        {
-            boss_volumes[2].SetActive(false);
-            shakeValues[2] = 0;
-            distanceValues[2] = 100;
-            foreach (LineRenderer thread in threads3)
+            else
             {
-                thread.gameObject.SetActive(false);
-            }
-        }
-        cameraShake();
-
-        //movement
-        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (FindObjectOfType<loading_screen>().isLoading)
-        { 
-            moveInput = Vector2.zero;
-        }
-        if (moveInput != Vector2.zero)
-        {
-            anim.SetBool("walking", true);
-        }
-        else
+                boss_volumes[1].SetActive(false);
+                shakeValues[1] = 0;
+                distanceValues[1] = 100;
+                foreach (LineRenderer thread in threads2)
                 {
-            anim.SetBool("walking", false);
-        }
-        if (moveInput.y > 0)
-        {
-            // Move up
-            sprites[1].SetActive(true);
-            sprites[0].SetActive(false);
-            sprites[2].SetActive(false);
-            sprites[3].SetActive(false);
-        }
-        else if (moveInput.x > 0)
-        {
-            // Move right
-            sprites[3].SetActive(true);
-            sprites[0].SetActive(false);
-            sprites[1].SetActive(false);
-            sprites[2].SetActive(false);
-        }
-        else if(moveInput.x < 0)
-        {
-            // Move left
-            sprites[2].SetActive(true);
-            sprites[0].SetActive(false);
-            sprites[1].SetActive(false);
-            sprites[3].SetActive(false);
-        }
-        else if (moveInput.y < 0)
-        {
-            // Move down
-            sprites[0].SetActive(true);
-            sprites[1].SetActive(false);
-            sprites[2].SetActive(false);
-            sprites[3].SetActive(false);
-        }
+                    thread.gameObject.SetActive(false);
+                }
+            }
 
-        rb.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
-        rb.gravityScale = 0f;
+            if (!bosses_cleared[2])
+            {
+                float distance = Vector2.Distance(bosses_position[2].position, transform.position);
+                distanceValues[2] = distance;
+                float speed = 10f - distance;
+                if (speed <= 0.1f)
+                {
+                    speed = 0.1f;
+                }
+                float shake = 5f - distance;
+                if (shake <= 0f)
+                {
+                    shake = 0f;
+                }
+                shakeValues[2] = shake;
+
+
+                parAnim[2].SetFloat("speed", speed);
+                foreach (ParticleSystem par in particle3)
+                {
+                    // Update posisi di tengah-tengah garis
+                    par.transform.position = (bosses_position[2].position + transform.position) * 0.5f;
+
+                    // Update rotasi mengarah ke player
+                    Vector3 dir = (transform.position - bosses_position[2].position).normalized;
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    par.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                    // Update par Length
+                    ParticleSystem.ShapeModule shape = par.shape;
+                    shape.scale = new Vector3(distance - 1, 0.5f, 0);
+
+                }
+
+                int segmentCount = Mathf.Max(2, Mathf.RoundToInt(distance * segmentsPerUnit));
+                foreach (LineRenderer thread in threads3)
+                {
+                    thread.positionCount = segmentCount;
+
+                    for (int i = 0; i < segmentCount; i++)
+                    {
+                        float t = (float)i / (segmentCount - 1);
+                        Vector3 point = Vector3.Lerp(bosses_position[2].position, transform.position, t);
+                        thread.SetPosition(i, point);
+                    }
+                }
+            }
+            else
+            {
+                boss_volumes[2].SetActive(false);
+                shakeValues[2] = 0;
+                distanceValues[2] = 100;
+                foreach (LineRenderer thread in threads3)
+                {
+                    thread.gameObject.SetActive(false);
+                }
+            }
+            cameraShake();
+
+            //movement
+            Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (FindObjectOfType<loading_screen>().isLoading)
+            { 
+                moveInput = Vector2.zero;
+            }
+            if (moveInput != Vector2.zero)
+            {
+                anim.SetBool("walking", true);
+            }
+            else
+                    {
+                anim.SetBool("walking", false);
+            }
+            if (moveInput.y > 0)
+            {
+                // Move up
+                sprites[1].SetActive(true);
+                sprites[0].SetActive(false);
+                sprites[2].SetActive(false);
+                sprites[3].SetActive(false);
+            }
+            else if (moveInput.x > 0)
+            {
+                // Move right
+                sprites[3].SetActive(true);
+                sprites[0].SetActive(false);
+                sprites[1].SetActive(false);
+                sprites[2].SetActive(false);
+            }
+            else if(moveInput.x < 0)
+            {
+                // Move left
+                sprites[2].SetActive(true);
+                sprites[0].SetActive(false);
+                sprites[1].SetActive(false);
+                sprites[3].SetActive(false);
+            }
+            else if (moveInput.y < 0)
+            {
+                // Move down
+                sprites[0].SetActive(true);
+                sprites[1].SetActive(false);
+                sprites[2].SetActive(false);
+                sprites[3].SetActive(false);
+            }
+
+            rb.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
+            rb.gravityScale = 0f;
+        }
     }
     void cameraShake()
     {
         float shake = Mathf.Max(0, shakeValues[0], shakeValues[1], shakeValues[2]);
+        heartbeat.volume = shake / 5f;
         //float dist_max = Mathf.Max(0f, distanceValues[0], distanceValues[1], distanceValues[2], distanceValues[3]);
         float dist_min = Mathf.Min(distanceValues[0], distanceValues[1], distanceValues[2]);
-        float e_value = 60f - dist_min * 7.5f;
+        float e_value = 40f - dist_min * 7f;
         if (e_value < 0f)
         {
             e_value = 0f;
@@ -304,6 +324,10 @@ public class Player : MonoBehaviour
         emission.rateOverTimeMultiplier = e_value;
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = virtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = shake;
+    }
+    public void stepping()
+    {
+        steps.Play();
     }
 /*    public void addSanity(int value)
     {

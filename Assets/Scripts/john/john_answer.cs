@@ -14,6 +14,7 @@ public class john_answer : MonoBehaviour
     public string current_answer = "";
     public List<char> acak;
     public bool canAnswer = false;
+    public static bool canAnswer2 = false;
     bool isAnswering = false;
     int randomizeCount = 0;
     [SerializeField] private int indexAnswer;
@@ -44,14 +45,27 @@ public class john_answer : MonoBehaviour
             die.Emit(50);
             answer_Text.transform.localPosition = Vector2.zero;
         }
+        if(!canAnswer2/* && !GameObject.Find("John_Voice").GetComponent<AudioSource>().isPlaying*/)
+        {
+            foreach(john_answer a in FindObjectsOfType<john_answer>())
+            {
+                if(!a.canAnswer)
+                {
+                    canAnswer2 = false;
+                    return;
+                }
+            }
+            canAnswer2 = true;
+        }
     }
     public void answer()
     {
-        if (canAnswer)
+        if (canAnswer && canAnswer2)
         {
             bg.Stop();
             isAnswering = true;
             canAnswer = false;
+            canAnswer2 = false;
             //anim.ResetTrigger("answer");
             //anim.SetTrigger("answer");
         }

@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class nurse_gm : MonoBehaviour
 {
+    [SerializeField] private AudioSource main_bgm;
+    [SerializeField] private AudioSource happy_bgm;
     [SerializeField] private Animator happyPanel;
     [SerializeField] private AudioSource happy_voice;
     [SerializeField] private Animator hintPanel;
@@ -24,6 +26,8 @@ public class nurse_gm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shake(0);
+        virtualCam.m_Lens.OrthographicSize = 5f;
         volume.profile = Instantiate(volume.profile);
         if (volume.profile.TryGet<ShadowsMidtonesHighlights>(out shadowsMidtonesHighlights))
         {
@@ -51,10 +55,18 @@ public class nurse_gm : MonoBehaviour
             CancelInvoke("change_canHint");
             Invoke("change_canHint", 0.1f);
         }
-        if (happyPanel.GetBool("in") && !happy_voice.isPlaying)
+        if (happyPanel.GetBool("in"))
         {
-            happyPanel.SetBool("in", false);
-            Invoke("backToGameplay", 1f);
+            main_bgm.volume = Mathf.MoveTowards(main_bgm.volume, 0, Time.deltaTime * 1f);
+            if (main_bgm.volume <= 0.001f)
+            {
+                happy_bgm.volume = Mathf.MoveTowards(happy_bgm.volume, 1, Time.deltaTime * 1f);
+            }
+            if(!happy_voice.isPlaying && happy_bgm.volume >= 0.99f)
+            {
+                happyPanel.SetBool("in", false);
+                Invoke("backToGameplay", 1f);
+            }
         }
     }
     public void win()
@@ -76,7 +88,12 @@ public class nurse_gm : MonoBehaviour
     }
     public void getHit()
     {
+        GameObject.Find("Billy_hit").GetComponent<AudioSource>().Play();
         health--;
+        if (health <= 0)
+        {
+            lose();
+        }
         currentShadows = new Vector4(2.5f, 0, 0, 0f);
         PlayerPrefs.SetInt("health", health);
         shake(5);

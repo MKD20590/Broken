@@ -14,6 +14,7 @@ public class john_word : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     int totalChecks = 1;
+    bool isAttacking = false;
     bool isDestroying = false;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class john_word : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDestroying && !GameObject.Find("Billy_Voice").GetComponent<AudioSource>().isPlaying)
+        if(!isAttacking && isDestroying && !GameObject.Find("Billy_Voice").GetComponent<AudioSource>().isPlaying)
         {
             isDestroying = false;
             destroy();
@@ -49,6 +50,7 @@ public class john_word : MonoBehaviour
             }*/
             anim.SetTrigger("attack");
             Debug.Log("wrong answer");
+            isAttacking = true;
             isDestroying = true;
             //anim.SetFloat("speed",anim.GetFloat("speed")+1f);
         }

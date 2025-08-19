@@ -9,6 +9,7 @@ public class loading_screen : MonoBehaviour
     Animator anim;
     string scene_name;
     public bool isLoading = false;
+    [SerializeField] private float listenerValue = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class loading_screen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AudioListener.volume = listenerValue;
     }
     public void loadScene()
     {

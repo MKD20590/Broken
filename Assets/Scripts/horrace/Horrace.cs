@@ -100,14 +100,14 @@ public class Horrace : MonoBehaviour
         {
             foreach (SpriteRenderer sr in sprites)
             {
-                sr.color = Color.Lerp(sr.color, new Color(1, 1, 1, 1), Time.deltaTime * 5f);
+                sr.color = Color.Lerp(sr.color, new Color(1, 1, 1, 1), Time.deltaTime * 3f);
             }
         }
         else
         {
             foreach (SpriteRenderer sr in sprites)
             {
-                sr.color = Color.Lerp(sr.color, new Color(1, 1, 1, 0), Time.deltaTime * 5f);
+                sr.color = Color.Lerp(sr.color, new Color(1, 1, 1, 0), Time.deltaTime * 1f);
             }
         }
 
@@ -153,6 +153,7 @@ public class Horrace : MonoBehaviour
     public void getHit()
     {
         gm.shake(5);
+        GameObject.Find("Monster_hit").GetComponent<AudioSource>().Play();
         foreach (SpriteRenderer sr in sprites)
         {
             sr.color = Color.red;

@@ -54,14 +54,14 @@ public class MenuManager : MonoBehaviour
     public void newGame()
     {
         PlayerPrefs.DeleteAll();
-        Heart.isCompleted = false;
         PlayerPrefs.SetInt("warned", 10);
         PlayerPrefs.SetInt("health",5);
         PlayerPrefs.SetInt("sanity",0);
+        continueGame();
     }
     public void continueGame()
     {
-
+        FindObjectOfType<loading_screen>().startLoad("gameplay");
     }
     public void creditGame()
     {
@@ -70,6 +70,6 @@ public class MenuManager : MonoBehaviour
     }
     public void quitGame()
     {
-
+        Application.Quit();
     }
 }
