@@ -139,17 +139,20 @@ public class escape_manager : MonoBehaviour
     }*/
     public void getHit()
     {
-        GameObject.Find("Billy_hit").GetComponent<AudioSource>().Play();
-        health--;
-        shake(5);
-        PlayerPrefs.SetInt("health", health);
-        currentShadows = new Vector4(2.5f, 0, 0, 0f);
-        if (health <= 0)
-        {
-            fail_particle[0].Play();
-            fail_particle[1].Play();
-            Invoke("lose", 3f);
-            //gameover.SetBool("in", true);
+        if (!isWin)
+        {            
+            GameObject.Find("Billy_hit").GetComponent<AudioSource>().Play();
+            health--;
+            shake(5);
+            PlayerPrefs.SetInt("health", health);
+            currentShadows = new Vector4(2.5f, 0, 0, 0f);
+            if (health <= 0)
+            {
+                fail_particle[0].Play();
+                fail_particle[1].Play();
+                Invoke("lose", 3f);
+                //gameover.SetBool("in", true);
+            }
         }
     }
     void lose()

@@ -32,6 +32,11 @@ public class loading_screen : MonoBehaviour
     }
     public void loadScene()
     {
+        StartCoroutine(loading());
+    }
+    IEnumerator loading()
+    {
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadSceneAsync(scene_name);
         anim.SetBool("out",true);
     }

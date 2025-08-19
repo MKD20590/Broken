@@ -24,7 +24,7 @@ public class Nurse : MonoBehaviour
         anim = GetComponent<Animator>();
         gm = FindObjectOfType<nurse_gm>();
         syringe = FindObjectOfType<nurse_syringe>();
-        Invoke("attack", 3f);
+        Invoke("attack", 4f);
     }
 
     // Update is called once per frame
@@ -90,6 +90,10 @@ public class Nurse : MonoBehaviour
     }
     public void getHit(string score)
     {
+        foreach (SpriteRenderer sr in sprites)
+        {
+            sr.color = Color.red;
+        }
         GameObject.Find("Monster_hit").GetComponent<AudioSource>().Play();
         if (score == "perfect")
         {

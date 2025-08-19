@@ -139,6 +139,14 @@ public class John : MonoBehaviour
         {
             int index = availableIdx[UnityEngine.Random.Range(0, availableIdx.Count)];
             answer_Text[i].current_answer = current_answer_kalimat.answer_kalimat[index];
+            if(index == 0)
+            {
+                answer_Text[i].isCorrect = true;
+            }
+            else
+            {
+                answer_Text[i].isCorrect = false;
+            }
             StartCoroutine(answer_Text[i].randomize());
             availableIdx.Remove(index);
         }

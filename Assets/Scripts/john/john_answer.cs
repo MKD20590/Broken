@@ -18,6 +18,7 @@ public class john_answer : MonoBehaviour
     bool isAnswering = false;
     int randomizeCount = 0;
     [SerializeField] private int indexAnswer;
+    public bool isCorrect = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +32,7 @@ public class john_answer : MonoBehaviour
     {
         if(isAnswering && Vector2.Distance(answer_Text.transform.position, john.word.transform.position) > 0.01f)
         {
-            answer_Text.transform.position = Vector2.MoveTowards(answer_Text.transform.position, john.word.transform.position, Time.deltaTime * 50f);
-
+            answer_Text.transform.position = Vector2.MoveTowards(answer_Text.transform.position, john.word.transform.position, Time.deltaTime * 30f);
         }
         else if(isAnswering && Vector2.Distance(answer_Text.transform.position, john.word.transform.position) < 0.01f)
         {
@@ -62,6 +62,13 @@ public class john_answer : MonoBehaviour
     {
         if (canAnswer && canAnswer2)
         {
+            if(!isCorrect)
+            {
+                bg.Clear();
+                ParticleSystem.MainModule main = bg.main;
+                main.startColor = new Color(1, 0, 0, 1);
+                bg.Emit(30);
+            }
             bg.Stop();
             isAnswering = true;
             canAnswer = false;
@@ -72,6 +79,8 @@ public class john_answer : MonoBehaviour
     }
     public IEnumerator randomize()
     {
+        ParticleSystem.MainModule main = bg.main;
+        main.startColor = new Color(1, 1, 1, 1);
         randomizeCount = 0;
         bg.Play();
         isAnswering = false;
@@ -107,6 +116,7 @@ public class john_answer : MonoBehaviour
     }
     public IEnumerator deleteText()
     {
+        isCorrect = false;
         bg.Stop();
         current_answer = "";
         canAnswer = false;

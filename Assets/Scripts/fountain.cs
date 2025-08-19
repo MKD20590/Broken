@@ -16,7 +16,7 @@ public class fountain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isColliding && Input.GetKeyDown(KeyCode.E))
+        if(isColliding && Input.GetKeyDown(KeyCode.E) && !heart.heartCompleted)
         {
             heart.completeHeart();
         }

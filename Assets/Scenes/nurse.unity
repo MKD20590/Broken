@@ -1562,7 +1562,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2145ddfaf27522347bbc13adda0055ba, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3004,7 +3004,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u201CHer care twists into control. When the droplets align in the strike
-    zone, tap\_to\_push\_back.\u201D"
+    zone, tap the circle\_to\_push\_them back.\u201D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a01e171773dee8b489a6955852e226d6, type: 2}
   m_sharedMaterial: {fileID: -390538936414608688, guid: a01e171773dee8b489a6955852e226d6, type: 2}

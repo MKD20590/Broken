@@ -32,13 +32,13 @@ public class enter_bossStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cooldownRemaining > 0 && isColliding)
+        if (cooldownRemaining > 0)
         {
             cooldownRemaining -= Time.deltaTime;
                 
             int menit = Mathf.FloorToInt(cooldownRemaining / 60);
             int detik = Mathf.FloorToInt(cooldownRemaining % 60);
-            cooldownText.text = string.Format("{0:00}:{1:00}", menit, detik);
+            if(isColliding) cooldownText.text = string.Format("{0:00}:{1:00}", menit, detik);
         }
         else if(cooldownRemaining <= 0 && isColliding)
         {

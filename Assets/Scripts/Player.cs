@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Heart heart;
     [SerializeField] private AudioSource steps;
     [SerializeField] private AudioSource heartbeat;
     [SerializeField] private GameObject gameoverScreen;
@@ -45,19 +46,21 @@ public class Player : MonoBehaviour
     void Awake()
     {
         virtualCam.m_Lens.OrthographicSize = 3f;
-        lastPosition = new Vector2(PlayerPrefs.GetFloat("player_lastPositionX", 0), PlayerPrefs.GetFloat("player_lastPositionY", 0));
-        transform.position = lastPosition;
         health = PlayerPrefs.GetInt("health", 5);
         if(health <= 0)
         {
             GameObject.Find("bgm_main").GetComponent<AudioSource>().Stop();
             gameoverScreen.SetActive(true);
+            PlayerPrefs.SetFloat("player_lastPositionX", 0);
+            PlayerPrefs.SetFloat("player_lastPositionY", 0);
         }
         else
         {
             GameObject.Find("bgm_main").GetComponent<AudioSource>().Play();
             gameoverScreen.SetActive(false);
         }
+        lastPosition = new Vector2(PlayerPrefs.GetFloat("player_lastPositionX", 0), PlayerPrefs.GetFloat("player_lastPositionY", 0));
+        transform.position = lastPosition;
         sanity = 0;
         for (int i = 0; i < 3; i++)
         {
@@ -269,7 +272,7 @@ public class Player : MonoBehaviour
                 anim.SetBool("walking", true);
             }
             else
-                    {
+            {
                 anim.SetBool("walking", false);
             }
             if (moveInput.y > 0)
@@ -307,6 +310,9 @@ public class Player : MonoBehaviour
 
             rb.velocity = new Vector2(moveInput.x * speed, moveInput.y * speed);
             rb.gravityScale = 0f;
+        }
+            if(!heart.heartCompleted)
+            {
         }
     }
     void cameraShake()

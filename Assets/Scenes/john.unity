@@ -12235,7 +12235,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10568
+        atime1: 12030
         atime2: 46326
         atime3: 65535
         atime4: 0
@@ -16249,7 +16249,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 3
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -21561,6 +21561,7 @@ MonoBehaviour:
   acak: 
   canAnswer: 0
   indexAnswer: 2
+  isCorrect: 0
 --- !u!1 &1253604419
 GameObject:
   m_ObjectHideFlags: 0
@@ -21728,7 +21729,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -23596,6 +23597,7 @@ MonoBehaviour:
   acak: 
   canAnswer: 0
   indexAnswer: 0
+  isCorrect: 0
 --- !u!1 &1672305988
 GameObject:
   m_ObjectHideFlags: 0
@@ -33919,6 +33921,7 @@ MonoBehaviour:
   acak: 
   canAnswer: 0
   indexAnswer: 1
+  isCorrect: 0
 --- !u!1 &2077394836
 GameObject:
   m_ObjectHideFlags: 0
@@ -34492,9 +34495,9 @@ SceneRoots:
   - {fileID: 1501500930}
   - {fileID: 1053129993}
   - {fileID: 1206417305}
-  - {fileID: 936781413}
   - {fileID: 1253604423}
   - {fileID: 1511699297}
   - {fileID: 209672016}
   - {fileID: 1644099823}
   - {fileID: 2091997192}
+  - {fileID: 936781413}

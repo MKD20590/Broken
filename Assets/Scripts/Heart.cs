@@ -25,6 +25,7 @@ public class Heart : MonoBehaviour
     [SerializeField] private bool lastPiece = false;
     [SerializeField] private bool thirdPiece = false;
     Color fullColor;
+    public bool heartCompleted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,11 +70,11 @@ public class Heart : MonoBehaviour
                     break;
                 }
             }
-            if (!manager.collected[3])
+            /*if (!manager.collected[3])
             {
                 canSpawn = false;
             }
-            else if (manager.collected[4])
+            else */if (manager.collected[4])
             {
                 canSpawn = false;
             }
@@ -140,6 +141,7 @@ public class Heart : MonoBehaviour
                 manager.getPiece(index, true);
                 GetComponent<BoxCollider2D>().enabled = false;
                 transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+                anim.SetBool("in", false);
                 //gameObject.SetActive(false);
             }
         }
@@ -193,6 +195,7 @@ public class Heart : MonoBehaviour
                     return;
                 }
             }
+            heartCompleted = true;
             GameObject.Find("fusing_heart").GetComponent<AudioSource>().Play();
             isCompleted = true;
             canOpenPanel = true;
