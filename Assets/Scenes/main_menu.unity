@@ -992,10 +992,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1684508162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 360.5, y: -300}
+  m_SizeDelta: {x: 721, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &552479517
 MonoBehaviour:
@@ -1021,7 +1021,7 @@ MonoBehaviour:
     \nWater Drop \nGhost Whisper \nKung Fu Punch 4 \nPunch 2 \nClick \nRiser Wildfire\nWhoosh
     Cinematic \n\nMusic \u2014 Pixabay\nGhostly Music Box Melodies \nEerie Music
     Box for Mysterious Scenes \n\nMusic \u2014 YouTube \nTransient \u2014 Liborio
-    Conti\nWay Home \u2014 Tokyo Music Walker \nIllusions \u2014 Keys of Moon \nPurpose
+    Conti\nAngel's Dream \u2014 Aakash Gandhi\nIllusions \u2014 Keys of Moon \nPurpose
     \u2014 Jonny Easton \nEpic Suspense Music (Action / Horror Background Instrumental)
     \u2014 FesliyanStudios (David Fesliyan) \nCold Case \u2014 Karl Casey (White
     Bat Audio) \nHorror Background Music \u2014 Power Music Factory \n\nVoice Actor\nCecilia

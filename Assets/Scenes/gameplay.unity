@@ -20415,11 +20415,11 @@ RectTransform:
   - {fileID: 1647923114}
   m_Father: {fileID: 1360458637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 40, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -40, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &454814681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49827,7 +49827,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23.720001, y: 4.5303845}
+    oldSize: {x: 23.600002, y: 4.5303845}
     newSize: {x: 7.17, y: 4.7904067}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -50323,7 +50323,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23.720001, y: 4.5303845}
+    oldSize: {x: 23.600002, y: 4.5303845}
     newSize: {x: 7.17, y: 4.7904067}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -50368,7 +50368,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23.720001, y: 4.5303845}
+    oldSize: {x: 23.600002, y: 4.5303845}
     newSize: {x: 7.17, y: 4.7904067}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -50413,7 +50413,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23.720001, y: 4.5303845}
+    oldSize: {x: 23.600002, y: 4.5303845}
     newSize: {x: 7.17, y: 4.7904067}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -65678,11 +65678,11 @@ RectTransform:
   - {fileID: 1080741018}
   m_Father: {fileID: 1360458637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -40, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 40, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1401336939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72279,7 +72279,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
