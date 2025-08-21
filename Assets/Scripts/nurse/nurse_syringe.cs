@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class nurse_syringe : MonoBehaviour
 {
+    [SerializeField] private Animator clickedIMG;
+    [SerializeField] private ParticleSystem clickedFX;
     [SerializeField] private AudioSource dropSound;
     [SerializeField] private GameObject droplet;
     Animator anim;
@@ -32,7 +34,9 @@ public class nurse_syringe : MonoBehaviour
     }
     public void clicked()
     {
-        if(drop != null)
+        clickedFX.Emit(1);
+        clickedIMG.Play("blinking");
+        if (drop != null)
         {
             drop.GetComponent<nurse_droplet>().clicked();
         }
