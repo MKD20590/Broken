@@ -69,7 +69,7 @@ public class horrace_gm : MonoBehaviour
                 happy_voice2.Play();
                 happyPlayed++;
             }
-            else if (!happy_voice2.isPlaying && happyPlayed == 2 && happy_bgm.volume >= 0.99f)
+            else if (!happy_voice2.isPlaying && happyPlayed == 2 && happy_bgm.volume >= 0.95f)
             {
                 happyPlayed = 0;
                 happyPanel.SetBool("in", false);

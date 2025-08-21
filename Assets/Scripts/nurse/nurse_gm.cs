@@ -62,7 +62,7 @@ public class nurse_gm : MonoBehaviour
             {
                 happy_bgm.volume = Mathf.MoveTowards(happy_bgm.volume, 1, Time.deltaTime * 1f);
             }
-            if(!happy_voice.isPlaying && happy_bgm.volume >= 0.99f)
+            if(!happy_voice.isPlaying && happy_bgm.volume >= 0.95f)
             {
                 happyPanel.SetBool("in", false);
                 Invoke("backToGameplay", 1f);

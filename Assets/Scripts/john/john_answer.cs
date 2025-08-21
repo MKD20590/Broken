@@ -32,7 +32,7 @@ public class john_answer : MonoBehaviour
     {
         if(isAnswering && Vector2.Distance(answer_Text.transform.position, john.word.transform.position) > 0.01f)
         {
-            answer_Text.transform.position = Vector2.MoveTowards(answer_Text.transform.position, john.word.transform.position, Time.deltaTime * 30f);
+            answer_Text.transform.position = Vector2.MoveTowards(answer_Text.transform.position, john.word.transform.position, Time.deltaTime * 40f);
         }
         else if(isAnswering && Vector2.Distance(answer_Text.transform.position, john.word.transform.position) < 0.01f)
         {

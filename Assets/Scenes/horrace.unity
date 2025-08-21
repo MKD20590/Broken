@@ -10196,7 +10196,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u201CThree words can set your mind straight. Click, hold, and link the
-    three right words.\u201D\n"
+    three right words. Beware of the time.\u201D\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a01e171773dee8b489a6955852e226d6, type: 2}
   m_sharedMaterial: {fileID: -390538936414608688, guid: a01e171773dee8b489a6955852e226d6, type: 2}
@@ -57934,7 +57934,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.85
   m_Pitch: 1
   Loop: 0
   Mute: 0

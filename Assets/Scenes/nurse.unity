@@ -8066,7 +8066,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -8740,7 +8740,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 3
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -9893,21 +9893,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.49729875
-          inSlope: 0.5027013
-          outSlope: 0.5027013
-          tangentMode: 34
+          value: 0.50811005
+          inSlope: 1.2658339
+          outSlope: 1.2658339
+          tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.33333334
+          outWeight: 0.18148372
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 0.5027013
-          outSlope: 0.5027013
-          tangentMode: 34
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -14098,9 +14098,9 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1496029573}
-  - {fileID: 943327806}
   - {fileID: 1416493035}
   - {fileID: 1651113307}
+  - {fileID: 943327806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1751655365

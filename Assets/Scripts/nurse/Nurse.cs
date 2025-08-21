@@ -105,9 +105,9 @@ public class Nurse : MonoBehaviour
         }
         else if (score == "bad")
         {
-            hp-= 0.6f;
+            hp-= 0.65f;
         }
-        if(hp < 0)
+        if(hp <= 0)
         {
             hp = 0;
             syringeAnim.SetBool("dead", true);
