@@ -19,10 +19,6 @@
   </tr>
 </table>
 
-<p align="center">
-  <img width="100%" alt="gif4" src="https://github.com/user-attachments/assets/7f8d8492-51fd-4dbd-a7fe-df933e68d8c1">
-</p>
-
 ##  📜Scripts and Features
 
 You are able to explore the map, kill all the monsters, get items (heart pieces), jump, and duck/slide in the game through the following scripts.
@@ -31,7 +27,7 @@ You are able to explore the map, kill all the monsters, get items (heart pieces)
 | ------------------- | ------------------------------------------------------------ |
 | `Player.cs` | Responsible for player's input movement and player visual effect |
 | `MonsterManager.cs` | Responsible for determining whether the player win / lose when fighting the monster |
-| `Player_escape.cs`  | Responsible for player's input movement (in escape scene) |
+| `PlayerEscape.cs`  | Responsible for player's input movement (in escape scene) |
 | `Heart.cs`  | Responsible for collecting and combining all heart pieces |
 | `etc`  | |
 
