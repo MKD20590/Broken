@@ -8,7 +8,16 @@
     </td>
   </tr>
 </table>
-
+<table>
+  <tr>
+    <td align="left" width="50%">
+      <img width="100%" alt="gif3" src="https://github.com/user-attachments/assets/05ec8def-71b0-4ab0-a24a-a29a0252ecf9">
+    </td>
+    <td align="right" width="50%">
+      <img width="100%" alt="gif4" src="https://github.com/user-attachments/assets/7f8d8492-51fd-4dbd-a7fe-df933e68d8c1">
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <img width="100%" alt="gif4" src="https://github.com/user-attachments/assets/7f8d8492-51fd-4dbd-a7fe-df933e68d8c1">
