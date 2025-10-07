@@ -26,7 +26,7 @@ You are able to explore the map, kill all the monsters, get items (heart pieces)
 |  Script       | Description                                                  |
 | ------------------- | ------------------------------------------------------------ |
 | `Player.cs` | Responsible for player's input movement and player visual effect |
-| `MonsterManager.cs` | Responsible for determining whether the player win / lose when fighting the monster |
+| `IMonsterManager.cs` | Responsible for determining whether the player win / lose when fighting the monster |
 | `PlayerEscape.cs`  | Responsible for player's input movement (in escape scene) |
 | `Heart.cs`  | Responsible for collecting and combining all heart pieces |
 | `etc`  | |
