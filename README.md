@@ -7,6 +7,8 @@
       <img width="100%" alt="gif2" src="https://github.com/user-attachments/assets/67a338e3-8d7b-462f-9229-581a31ebed1f">
     </td>
   </tr>
+</table>
+<table>
   <tr>
     <td align="left" width="50%">
       <img width="100%" alt="gif3" src="https://github.com/user-attachments/assets/05ec8def-71b0-4ab0-a24a-a29a0252ecf9">
