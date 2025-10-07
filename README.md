@@ -21,7 +21,7 @@
 
 ##  📜Scripts and Features
 
-You are able to explore the map, kill all the monsters, get items (heart pieces), jump, and duck/slide in the game through the following scripts.
+You are able to explore the map, fight all the monsters, get items (heart pieces), jump, and duck/slide in the game through the following scripts.
 
 |  Script       | Description                                                  |
 | ------------------- | ------------------------------------------------------------ |
