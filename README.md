@@ -3,18 +3,22 @@
     <td align="left" width="50%">
       <img width="100%" alt="gif1" src="https://github.com/user-attachments/assets/c9df2f00-4764-407b-8b86-9079a298063f">
     </td>
-    <td align="center" width="50%">
+    <td align="right" width="50%">
       <img width="100%" alt="gif2" src="https://github.com/user-attachments/assets/67a338e3-8d7b-462f-9229-581a31ebed1f">
     </td>
-    <td align="right" width="50%">
+  </tr>
+  <tr>
+    <td align="left" width="50%">
       <img width="100%" alt="gif3" src="https://github.com/user-attachments/assets/05ec8def-71b0-4ab0-a24a-a29a0252ecf9">
+    </td>
+    <td align="right" width="50%">
+      <img width="100%" alt="gif4" src="https://github.com/user-attachments/assets/7f8d8492-51fd-4dbd-a7fe-df933e68d8c1">
     </td>
   </tr>
 </table>
 
 <p align="center">
   <img width="100%" alt="gif4" src="https://github.com/user-attachments/assets/7f8d8492-51fd-4dbd-a7fe-df933e68d8c1">
-
 </p>
 
 ##  📜Scripts and Features
