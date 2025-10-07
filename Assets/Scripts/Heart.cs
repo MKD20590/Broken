@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Heart : MonoBehaviour
 {
+    [SerializeField] private Button heartUI_Button;
     [Header("john - nurse - horrace - pojok kanan atas - fountain")]
     [SerializeField] private List<Image> pieces;
     [SerializeField] private List<GameObject> piecesUI;
@@ -39,11 +40,11 @@ public class Heart : MonoBehaviour
             {
                 if (player.bosses_cleared[i])
                 {
-                    getPiece(i, true);
+                    GetPiece(i, true);
                 }
                 else
                 {
-                    getPiece(i, false);
+                    GetPiece(i, false);
                 }
             }
             for (int i = 0; i < collected.Count; i++)
@@ -51,11 +52,11 @@ public class Heart : MonoBehaviour
                 collected[i] = PlayerPrefs.GetInt("piece" + i, 0) > 0;
                 if (collected[i])
                 {
-                    getPiece(i, true);
+                    GetPiece(i, true);
                 }
                 else
                 {
-                    getPiece(i, false);
+                    GetPiece(i, false);
                 }
             }
         }
@@ -70,11 +71,7 @@ public class Heart : MonoBehaviour
                     break;
                 }
             }
-            /*if (!manager.collected[3])
-            {
-                canSpawn = false;
-            }
-            else */if (manager.collected[4])
+            if (manager.collected[4])
             {
                 canSpawn = false;
             }
@@ -109,10 +106,6 @@ public class Heart : MonoBehaviour
     {
         if(isManager)
         {
-            if (canOpenPanel && inventoryPanel.GetBool("in") && Input.GetMouseButtonDown(0))
-            {
-                openInventory();
-            }
             for (int i=0;i<pieces.Count;i++)
             {
                 if(collected[i])
@@ -126,27 +119,32 @@ public class Heart : MonoBehaviour
             }
             if(isFull && isCompleted)
             {
-                //heartMat[0].SetColor("_Color", Color.Lerp(heartMat[0].GetColor("_Color"), fullColor, Time.deltaTime * 3f));
-                //heartMat[1].SetColor("_Color", Color.Lerp(heartMat[1].GetColor("_Color"), heartMat[1].GetColor("_Color") * 2f, Time.deltaTime * 3f));
-                //anim.SetBool("full", true);
                 heartUI.SetBool("full", true);
             }
         }
         else
         {
             anim.SetBool("in", isColliding);
-            if (isColliding && Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                GameObject.Find("heart_piece").GetComponent<AudioSource>().Play();
-                manager.getPiece(index, true);
-                GetComponent<BoxCollider2D>().enabled = false;
-                transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
-                anim.SetBool("in", false);
-                //gameObject.SetActive(false);
+                TakePiece();
             }
         }
     }
-    public void getPiece(int index, bool isOn)
+
+    void TakePiece()
+    {
+        if(isColliding)
+        {
+            GameObject.Find("heart_piece").GetComponent<AudioSource>().Play();
+            manager.GetPiece(index, true);
+            GetComponent<BoxCollider2D>().enabled = false;
+            transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            anim.SetBool("in", false);
+        }
+    }
+
+    public void GetPiece(int index, bool isOn)
     {
         if(isManager)
         {
@@ -175,18 +173,14 @@ public class Heart : MonoBehaviour
                     isFull = true;
                 }
             }
-/*            if(isFull)
-            {
-                canOpenPanel = true;
-                openInventory();
-            }*/
         }
     }
-    public void completeHeart()
+    public void CompleteHeart()
     {
         if(isManager)
         {
-            for(int i=0;i<collected.Count;i++)
+            if(heartUI_Button != null) heartUI_Button.interactable = false;
+            for (int i=0;i<collected.Count;i++)
             {
                 if(!collected[i])
                 {
@@ -198,11 +192,11 @@ public class Heart : MonoBehaviour
             heartCompleted = true;
             GameObject.Find("fusing_heart").GetComponent<AudioSource>().Play();
             isCompleted = true;
-            canOpenPanel = true;
-            openInventory();
+            if(!isOpen) OpenInventory();
+            canOpenPanel = false;
         }
     }
-    public void openInventory()
+    public void OpenInventory()
     {
         if(isManager && canOpenPanel)
         {
@@ -224,15 +218,15 @@ public class Heart : MonoBehaviour
             isColliding = false;
         }
     }
-    public void escaping()
+    public void Escaping()
     {
-        FindObjectOfType<loading_screen>().startLoad("escape");
+        FindObjectOfType<loading_screen>().startLoad("Escape");
     }
-    public void hover()
+    public void Hover()
     {
         if(isManager) canOpenPanel = false;
     }
-    public void unhover()
+    public void Unhover()
     {
         if (isManager) canOpenPanel = true;
     }

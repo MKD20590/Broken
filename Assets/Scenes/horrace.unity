@@ -236,8 +236,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1548873530}
-        m_TargetAssemblyTypeName: john_gm, Assembly-CSharp
-        m_MethodName: showHint
+        m_TargetAssemblyTypeName: horrace_gm, Assembly-CSharp
+        m_MethodName: ShowHint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10433,7 +10433,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1149595632b68304290892d15387ebb1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -10562,9 +10562,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: john_gm, Assembly-CSharp
-        m_MethodName: showHint
+      - m_Target: {fileID: 1548873530}
+        m_TargetAssemblyTypeName: horrace_gm, Assembly-CSharp
+        m_MethodName: ShowHint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21352,7 +21352,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: d183dac13fad00d45aa141905591dbe4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -52539,7 +52539,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1783325040259342818, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: ec30c05c005415547a141619adb89833, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -57934,7 +57934,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.85
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -63359,7 +63359,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -73507,7 +73507,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 3
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -94833,7 +94833,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 45926c13145fc5345bae59ed52115089, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -95077,7 +95077,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2145ddfaf27522347bbc13adda0055ba, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -24,10 +24,10 @@ public class John : MonoBehaviour
     }
     [SerializeField] private List<answers> answer_kalimat;
     public answers current_answer_kalimat;
-    [SerializeField] private List<john_answer> answer_Text;
+    [SerializeField] private List<JohnAnswer> answer_Text;
     Animator anim;
-    public john_word word;
-    john_gm gm;
+    public JohnWord word;
+    JohnGM gm;
     int totalWords = 0;
     // Start is called before the first frame update
     void Start()
@@ -39,9 +39,9 @@ public class John : MonoBehaviour
             mat.SetFloat("_multiply", 0);
             mat.SetFloat("_alpha_value", 1f);
         }
-        gm = FindObjectOfType<john_gm>();
+        gm = FindObjectOfType<JohnGM>();
         anim = GetComponent<Animator>();
-        Invoke("spawnWord", 3f);
+        Invoke("SpawnWord", 2f);
     }
 
     // Update is called once per frame
@@ -93,15 +93,15 @@ public class John : MonoBehaviour
             }
         }
     }
-    public void spawnWord()
+    public void SpawnWord()
     {
         if (totalWords < 3)
         {
             totalWords++;
             int idx = UnityEngine.Random.Range(0, wordsPrefabs.Count);
-            word = Instantiate(wordsPrefabs[idx], transform.position, Quaternion.identity).GetComponent<john_word>();
+            word = Instantiate(wordsPrefabs[idx], transform.position, Quaternion.identity).GetComponent<JohnWord>();
             current_answer_kalimat = answer_kalimat[answer_kalimat.FindIndex(x => x.current_words == word.current_words)];
-            addAnswer();
+            AddAnswer();
             john_voice.Stop();
             john_voice.clip = words_voice[idx];
             john_voice.Play();
@@ -112,18 +112,18 @@ public class John : MonoBehaviour
         {
             if (hp <= 0)
             {
-                gm.win();
+                gm.Win();
             }
             else
             {
-                gm.lose();
+                gm.Lose();
             }
         }
     }
-    public void getHit()
+    public void GetHit()
     {
         GameObject.Find("Monster_hit").GetComponent<AudioSource>().Play();
-        gm.shake(5);
+        gm.Shake(5);
         foreach (SpriteRenderer sr in sprites)
         {
             sr.color = Color.red;
@@ -132,7 +132,7 @@ public class John : MonoBehaviour
         anim.ResetTrigger("hit");
         anim.SetTrigger("hit");
     }
-    void addAnswer()
+    void AddAnswer()
     {
         List<int> availableIdx = new List<int>{0, 1, 2};
         for (int i = 0; i < answer_Text.Count; i++)
@@ -147,29 +147,29 @@ public class John : MonoBehaviour
             {
                 answer_Text[i].isCorrect = false;
             }
-            StartCoroutine(answer_Text[i].randomize());
+            StartCoroutine(answer_Text[i].Randomize());
             availableIdx.Remove(index);
         }
     }
-    public void checkAnswer(int idx)
+    public void CheckAnswer(int idx)
     {
         if (word != null)
         {
             int index = current_answer_kalimat.answer_kalimat.FindIndex(x => x == answer_Text[idx].current_answer);
-            word.checkAnswer(index);
+            word.CheckAnswer(index);
         }
     }
-    public void billyTalk()
+    public void BillyTalk()
     {
         billy_voice.Stop();
         billy_voice.clip = current_answer_kalimat.answer_voice;
         billy_voice.Play();
     }
-    public void resetAnswer()
+    public void ResetAnswer()
     {
-        foreach (john_answer answer in answer_Text)
+        foreach (JohnAnswer answer in answer_Text)
         {
-            StartCoroutine(answer.deleteText());
+            StartCoroutine(answer.DeleteText());
         }
     }
 }

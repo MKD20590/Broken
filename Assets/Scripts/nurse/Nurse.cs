@@ -13,8 +13,8 @@ public class Nurse : MonoBehaviour
     [SerializeField] private List<AudioClip> Billy_voice_clip;
     int voiceIdx = 0;
     Animator anim;
-    nurse_gm gm;
-    [SerializeField] private nurse_syringe syringe;
+    NurseGM gm;
+    [SerializeField] private NurseSyringe syringe;
     [SerializeField] private float hp = 4f;
     int count = 0;
     bool hitDone = false;
@@ -22,9 +22,9 @@ public class Nurse : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        gm = FindObjectOfType<nurse_gm>();
-        syringe = FindObjectOfType<nurse_syringe>();
-        Invoke("attack", 4f);
+        gm = FindObjectOfType<NurseGM>();
+        syringe = FindObjectOfType<NurseSyringe>();
+        Invoke("Attack", 2f);
     }
 
     // Update is called once per frame
@@ -85,7 +85,7 @@ public class Nurse : MonoBehaviour
         if(hitDone && !Billy_voice.isPlaying)
         {
             hitDone = false;
-            attack();
+            Attack();
         }
     }
     public void getHit(string score)
@@ -112,7 +112,7 @@ public class Nurse : MonoBehaviour
             hp = 0;
             syringeAnim.SetBool("dead", true);
         }
-        gm.shake(5);
+        gm.Shake(5);
         anim.ResetTrigger("hit");
         anim.SetTrigger("hit");
         Billy_voice.Stop();
@@ -121,9 +121,8 @@ public class Nurse : MonoBehaviour
         Billy_voice_clip.RemoveAt(voiceIdx);
         hitDone = true;
     }
-    public void attack()
+    public void Attack()
     {
-        //hp = Mathf.Round(hp);
         if(hp > 0 && count < 5)
         {
             count++;
@@ -132,15 +131,15 @@ public class Nurse : MonoBehaviour
             Nurse_voice.clip = Nurse_voice_clip[voiceIdx];
             Nurse_voice.Play();
             Nurse_voice_clip.RemoveAt(voiceIdx);
-            syringe.attack();
+            syringe.Attack();
         }
         else if(hp <= 0)
         {
-            gm.win();
+            gm.Win();
         }
         else if(count >= 5)
         {
-            gm.lose();
+            gm.Lose();
         }
     }
 }

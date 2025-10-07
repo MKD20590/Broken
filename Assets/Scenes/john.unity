@@ -10489,7 +10489,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10787,8 +10787,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1557977777}
-        m_TargetAssemblyTypeName: john_gm, Assembly-CSharp
-        m_MethodName: showHint
+        m_TargetAssemblyTypeName: JohnGM, Assembly-CSharp
+        m_MethodName: ShowHint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15719,7 +15719,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1149595632b68304290892d15387ebb1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -16376,7 +16376,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -21493,8 +21493,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1210832796}
-        m_TargetAssemblyTypeName: john_answer, Assembly-CSharp
-        m_MethodName: answer
+        m_TargetAssemblyTypeName: JohnAnswer, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23046,8 +23046,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1557977777}
-        m_TargetAssemblyTypeName: john_gm, Assembly-CSharp
-        m_MethodName: showHint
+        m_TargetAssemblyTypeName: JohnGM, Assembly-CSharp
+        m_MethodName: ShowHint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23237,7 +23237,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2145ddfaf27522347bbc13adda0055ba, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23529,8 +23529,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1658024363}
-        m_TargetAssemblyTypeName: john_answer, Assembly-CSharp
-        m_MethodName: answer
+        m_TargetAssemblyTypeName: JohnAnswer, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33853,8 +33853,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2063373287}
-        m_TargetAssemblyTypeName: john_answer, Assembly-CSharp
-        m_MethodName: answer
+        m_TargetAssemblyTypeName: JohnAnswer, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33983,7 +33983,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1338934177221452519, guid: 13afeba8e28fda348be8527c24b3cb6b, type: 2}
   m_audioClip: {fileID: 8300000, guid: d183dac13fad00d45aa141905591dbe4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.07
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

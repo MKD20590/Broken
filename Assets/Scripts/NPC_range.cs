@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class NPC_range : MonoBehaviour
+public class NPC_Range : MonoBehaviour
 {
     AudioSource whispers;
     [SerializeField] private float minDistance = 5f;
@@ -11,15 +11,15 @@ public class NPC_range : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     [SerializeField] private bool isManager = false;
-    List<NPC_range> npcs;
+    List<NPC_Range> npcs;
     public float speed;
     // Start is called before the first frame update
     void Start()
     {
         if(isManager)
         {
-            npcs = new List<NPC_range>();
-            foreach(NPC_range n in FindObjectsOfType<NPC_range>())
+            npcs = new List<NPC_Range>();
+            foreach(NPC_Range n in FindObjectsOfType<NPC_Range>())
             {
                 npcs.Add(n);
             }
@@ -33,16 +33,6 @@ public class NPC_range : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Vector2.Distance(player.transform.position, transform.position));
-/*        if (Vector2.Distance(player.transform.position, transform.position) > minDistance)
-        {
-            //detected
-            //rb.velocity = player.transform.position - transform.position;
-        }
-        else
-        {
-            //rb.velocity *= 0;
-        }*/
         speed = minDistance - Vector2.Distance(player.transform.position, transform.position);
         if (speed > 1)
         {

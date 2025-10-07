@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] private Animator screen;
+    [SerializeField] private Animator character;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private Animator creditPanel;
     [SerializeField] private GameObject warningPanel;
@@ -22,7 +24,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        warned = PlayerPrefs.GetInt("warned",0) > 0;
+        //warned = PlayerPrefs.GetInt("warned",0) > 0;
         if (PlayerPrefs.HasKey("health") || PlayerPrefs.HasKey("sanity"))
         {
             continueButton.SetActive(true);
@@ -49,7 +51,18 @@ public class MenuManager : MonoBehaviour
             warned = true;
             PlayerPrefs.SetInt("warned", 10);
         }
-        warningPanel.transform.parent.GetComponent<Animator>().SetBool("warned",warned);
+        else if(warned && !screen.GetBool("in") && warningPanel.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("in")
+            && (warningPanel.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime * 
+            warningPanel.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length) >= 5f 
+            ||
+            warned && !screen.GetBool("in") && warningPanel.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("in2") &&
+            (warningPanel.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime *
+            warningPanel.transform.parent.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length) >= 1.2f )
+        {
+            screen.SetBool("in", true);
+            character.SetBool("in", true);
+        }
+        warningPanel.transform.parent.GetComponent<Animator>().SetBool("warned", warned);
     }
     public void newGame()
     {

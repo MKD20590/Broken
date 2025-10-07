@@ -107,15 +107,8 @@ public class GameManager : MonoBehaviour
                 glimpses.GetComponent<Image>().material = glimpses_mats[Random.Range(0,glimpses_mats.Count)];
 
             }
-            //glimpses.GetComponent<CanvasGroup>().alpha = Mathf.MoveTowards(glimpses.GetComponent<CanvasGroup>().alpha,0,Time.deltaTime);
         }
 
-        //hint
-        if(canHintClick && hintPanel.GetBool("in") && Input.GetMouseButtonDown(0))
-        {
-            showHint();
-            canHintClick = false;
-        }
         foreach (Image h in totalHints)
         {
             if(totalHints.IndexOf(h) == currentHint)
@@ -131,10 +124,10 @@ public class GameManager : MonoBehaviour
         //pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            paused();
+            Paused();
         }
     }
-    public void resetGame()
+    public void ResetGame()
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("warned", 10);
@@ -142,11 +135,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("sanity", 0);
         FindObjectOfType<loading_screen>().startLoad("gameplay");
     }
-    public void backMenu()
+    public void BackMenu()
     {
         FindObjectOfType<loading_screen>().startLoad("main_menu");
     }
-    public void showHint()
+    public void ShowHint()
     {
         if (canHint)
         {
@@ -155,22 +148,22 @@ public class GameManager : MonoBehaviour
             canHint = false;
             hintPanel.SetBool("in", !hintPanel.GetBool("in"));
         }
-        CancelInvoke("change_canHint");
-        Invoke("change_canHint", 0.1f);
+        CancelInvoke("ChangeCanHint");
+        Invoke("ChangeCanHint", 0.1f);
     }
-    public void hover()
+    public void Hover()
     {
         canHintClick = false;
     }
-    public void unhover()
+    public void Unhover()
     {
         canHintClick = true;
     }
-    void change_canHint()
+    void ChangeCanHint()
     {
         canHint = true;
     }
-    public void nextHint()
+    public void NextHint()
     {
         if(canHint)
         {
@@ -183,10 +176,10 @@ public class GameManager : MonoBehaviour
             {
                 currentHint = 0;
             }
-            StartCoroutine(changeHint());
+            StartCoroutine(ChangeHint());
         }
     }
-    public void prevHint()
+    public void PrevHint()
     {
         if(canHint)
         {
@@ -199,15 +192,12 @@ public class GameManager : MonoBehaviour
             {
                 currentHint = hints.Count - 1;
             }
-            StartCoroutine(changeHint());
+            StartCoroutine(ChangeHint());
         }
     }
-    IEnumerator changeHint()
+    IEnumerator ChangeHint()
     {
         int randomizeCount = acak.Count-1;
-/*        if(acak.Count >= hints[currentHint].Length)
-        {
-        }*/
         while (randomizeCount >= 0)
         {
             for (int i = acak.Count - 1; i > randomizeCount - 1; i--)
@@ -257,13 +247,10 @@ public class GameManager : MonoBehaviour
             hintText.text = new string(acak.ToArray());
             randomizeCount++;
         }
-/*        else if (acak.Count < hints[currentHint].Length)
-        {
-        }*/
         yield return new WaitForSeconds(0.5f);
         canHint = true;
     }
-    public void paused()
+    public void Paused()
     {
         pause = !pause;
         if (pause)

@@ -18,7 +18,7 @@ public class fountain : MonoBehaviour
     {
         if(isColliding && Input.GetKeyDown(KeyCode.E) && !heart.heartCompleted)
         {
-            heart.completeHeart();
+            heart.CompleteHeart();
         }
         anim.SetBool("in", isColliding);
     }

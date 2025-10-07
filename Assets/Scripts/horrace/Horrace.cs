@@ -15,13 +15,9 @@ public class Horrace : MonoBehaviour
     [SerializeField] private List<string> word1;
     [SerializeField] private List<string> word2;
     [SerializeField] private List<string> word3;
-/*    [Header("ada 3, random posisi")]
-    [SerializeField] private List<string> word_baik1;
-    [SerializeField] private List<string> word_baik2;
-    [SerializeField] private List<string> word_baik3;*/
     List<int> wordIndexes = new List<int> {1,2,3};
     int wordIdx = 0;
-    [Header("ada 24")]
+    [Header("ada 10")]
     [SerializeField] private List<horrace_word> word_position;
     [SerializeField] private List<float> timer;
     [SerializeField] private TextMeshProUGUI timerText;
@@ -40,7 +36,7 @@ public class Horrace : MonoBehaviour
             word_position.Add(word);
         }
         gm = FindObjectOfType<horrace_gm>();
-        StartCoroutine(spawnWord());
+        StartCoroutine(SpawnWord());
     }
 
     // Update is called once per frame
@@ -55,9 +51,9 @@ public class Horrace : MonoBehaviour
             timerRunning = false;
             for (int i = 0; i < word_position.Count; i++)
             {
-                word_position[i].explode(true);
+                word_position[i].Explode(true);
             }
-            gm.getHit();
+            gm.GetHit();
             Invoke("nextStage", 0.5f);
         }
         int menit = Mathf.FloorToInt(timer[stage - 1] / 60);
@@ -134,7 +130,7 @@ public class Horrace : MonoBehaviour
         if (stage < 3)
         {
             stage++;
-            StartCoroutine(spawnWord());
+            StartCoroutine(SpawnWord());
             timerRunning = true;
             billylaying = false;
         }
@@ -142,17 +138,17 @@ public class Horrace : MonoBehaviour
         {
             if (hp > 0)
             {
-                gm.lose();
+                gm.Lose();
             }
             else
             {
-                gm.win();
+                gm.Win();
             }
         }
     }
-    public void getHit()
+    public void GetHit()
     {
-        gm.shake(5);
+        gm.Shake(5);
         GameObject.Find("Monster_hit").GetComponent<AudioSource>().Play();
         foreach (SpriteRenderer sr in sprites)
         {
@@ -161,7 +157,7 @@ public class Horrace : MonoBehaviour
         hp--;
         for (int i = 0; i < word_position.Count; i++)
         {
-            word_position[i].explode(false);
+            word_position[i].Explode(false);
         }
         anim.ResetTrigger("hit");
         anim.SetTrigger("hit");
@@ -172,9 +168,9 @@ public class Horrace : MonoBehaviour
         billylaying = true;
         //Invoke("nextStage", 0.5f);
     }
-    public IEnumerator spawnWord()
+    public IEnumerator SpawnWord()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         wordIdx = wordIndexes[Random.Range(0, wordIndexes.Count)];
         wordIndexes.Remove(wordIdx);
 
@@ -195,7 +191,7 @@ public class Horrace : MonoBehaviour
             {                
                 int idxPos = availablePos[Random.Range(0, availablePos.Count)];
                 int idx = availableIdx[Random.Range(0, availableIdx.Count)];
-                StartCoroutine(word_position[idxPos].setWord(word1[idx]));
+                StartCoroutine(word_position[idxPos].SetWord(word1[idx]));
                 if (idx == word1.Count - 1 ||
                     idx == word1.Count - 2 ||
                     idx == word1.Count - 3)
@@ -213,7 +209,7 @@ public class Horrace : MonoBehaviour
             {
                 int idxPos = availablePos[Random.Range(0, availablePos.Count)];
                 int idx = availableIdx[Random.Range(0, availableIdx.Count)];
-                StartCoroutine(word_position[idxPos].setWord(word2[idx]));
+                StartCoroutine(word_position[idxPos].SetWord(word2[idx]));
                 if (idx == word1.Count - 1 ||
                     idx == word1.Count - 2 ||
                     idx == word1.Count - 3)
@@ -231,7 +227,7 @@ public class Horrace : MonoBehaviour
             {
                 int idxPos = availablePos[Random.Range(0, availablePos.Count)];
                 int idx = availableIdx[Random.Range(0, availableIdx.Count)];
-                StartCoroutine(word_position[idxPos].setWord(word3[idx]));
+                StartCoroutine(word_position[idxPos].SetWord(word3[idx]));
                 if (idx == word1.Count - 1 ||
                     idx == word1.Count - 2 ||
                     idx == word1.Count - 3)
